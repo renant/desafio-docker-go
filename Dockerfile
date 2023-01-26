@@ -11,6 +11,4 @@ FROM alpine
 
 COPY --from=Builder /main /main
 
-RUN ls -a
-
 CMD ["/main"]
