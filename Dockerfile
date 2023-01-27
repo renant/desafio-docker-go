@@ -5,10 +5,10 @@ WORKDIR /app
 COPY *.go ./
 
 RUN go mod init challenge/fullcycle
-RUN go build -o /main
+RUN go build -ldflags="-s -w" -o /main
 
-FROM alpine
+FROM scratch
 
-COPY --from=Builder /main /main
+COPY --from=Builder /main .
 
-CMD ["/main"]
+ENTRYPOINT ["./main"]
